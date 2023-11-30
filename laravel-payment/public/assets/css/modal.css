@@ -1,0 +1,90 @@
+.btn-modalshow {
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: linear-gradient(to right, #b24592, #f15f79);
+}
+.btn-close {
+    color: #666666;
+    font-size: 1.25rem;
+    line-height: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: transparent;
+    cursor: pointer;
+}
+
+dialog.dialog {
+    position: fixed;
+    width: 92%;
+    max-width: 600px;
+    top: 0%;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0.25rem;
+    opacity: 0;
+    transform: translate(-50%, -110%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: top 250ms ease, opacity 250ms ease, transform 250ms ease;
+}
+dialog.dialog.active {
+    top: 10%;
+    opacity: 1;
+    transform: translate(-50%, 0%);
+    pointer-events: auto;
+}
+dialog.dialog .dialog-body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+dialog.dialog .dialog-header,
+dialog.dialog .dialog-content,
+dialog.dialog .dialog-footer {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+dialog.dialog .dialog-header {
+    border-bottom: 1px solid #f4f4f4;
+    display: flex;
+    align-items: center;
+}
+dialog.dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 250ms ease;
+}
+dialog.dialog.active::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.avatar {
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    background-color: #645cff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
