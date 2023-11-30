@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="flex flex-column">
+    <div class="card">
+      <pre>{{ data | json }}</pre>
+    </div>
+    <div class="col-md-12">
+      <h1>Payment Start</h1>
+      <button
+        pButton
+        class="p-button-primary"
+        (click)="onMakePayment()"
+        label="Make Payment"
+      ></button>
+    </div>
+  </div>
+</div>

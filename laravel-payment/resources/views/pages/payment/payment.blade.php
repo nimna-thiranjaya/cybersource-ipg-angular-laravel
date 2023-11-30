@@ -47,6 +47,11 @@
                             @endphp
                         </div>
                         @endif
+
+                        <div>
+                            <!-- Display data in compact -->
+                            <p>{{ $decryptedData }}</p>
+                        </div>
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <h3>Payment Interface</h3>
                             <form class="pt-3" action="{{ URL::to('/user-login') }}" method="POST"

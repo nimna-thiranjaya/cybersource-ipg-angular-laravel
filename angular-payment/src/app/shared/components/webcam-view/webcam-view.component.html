@@ -1,0 +1,65 @@
+<div class="grid formgrid">
+  <div class="field mb-3 col-12 md:col-6">
+    <div
+      class="flex flex-column gap-2 align-items-center justify-content-center"
+    >
+      <div>
+        <webcam
+          [trigger]="triggerObservable"
+          (imageCapture)="handleImage($event)"
+          [switchCamera]="nextWebcamObservable"
+          [imageQuality]="1"
+          (initError)="handleInitError($event)"
+          mirrorImage="never"
+        ></webcam>
+      </div>
+
+      <button
+        pButton
+        type="button"
+        icon="pi pi-camera"
+        label="Take Photo"
+        class="p-button-secondary"
+        (click)="triggerSnapshot()"
+      ></button>
+    </div>
+  </div>
+
+  <div class="field mb-3 col-12 md:col-6">
+    <div
+      class="flex flex-column gap-2 align-items-center justify-content-center"
+    >
+      <div
+        class="surface-border border-2 border-round surface-card w-full h-12rem flex flex-column justify-content-center align-items-center upload-btn-wrapper text-gray-400"
+        [ngClass]="webcamImage ? 'border-1' : 'border-dashed'"
+      >
+        <i class="pi pi-image text-2xl" *ngIf="!webcamImage"></i>
+        <img
+          [src]="webcamImage.imageAsDataUrl"
+          *ngIf="webcamImage"
+          class="w-full h-full"
+          style="object-fit: cover"
+        />
+      </div>
+
+      <div class="flex gap-2">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-check"
+          class="p-button-primary"
+          [disabled]="!webcamImage"
+          (click)="saveImage()"
+        ></button>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-times"
+          class="p-button-danger"
+          [disabled]="!webcamImage"
+          (click)="removeImage()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
