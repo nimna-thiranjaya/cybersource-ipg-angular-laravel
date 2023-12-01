@@ -1,16 +1,109 @@
 <div class="container">
   <div class="flex flex-column">
     <div class="card p-8">
-      <pre>{{ data | json }}</pre>
+      <pre>{{ paymentData | json }}</pre>
     </div>
-    <div class="col-md-12 p-8">
-      <h1>Payment Start</h1>
-      <button
-        pButton
-        class="p-button-primary"
-        (click)="onMakePayment()"
-        label="Make Payment"
-      ></button>
-    </div>
+  </div>
+</div>
+
+<div class="flex justify-content-center align-items-center mt-5">
+  <div class="card">
+    <h4 class="text-color-white">Payment</h4>
+    <hr />
+    <form
+      ngNoForm
+      id="payment_confirmation"
+      action="https://testsecureacceptance.cybersource.com/embedded/pay"
+      method="post"
+    >
+      <div *ngFor="let c of controls">
+        <input
+          type="hidden"
+          id="{{ c.key }}"
+          name="{{ c.key }}"
+          value="{{ c.value }}"
+        />
+      </div>
+      <div class="flex flex-column">
+        <div class="flex flex-row gap-3 mt-3">
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="card_type"
+              value="001"
+              inputId="card_type"
+              [(ngModel)]="paymentData.card_type"
+              (onClick)="onDataChanged()"
+            >
+            </p-radioButton>
+            <label for="ingredient1" class="ml-2"> VIZA </label>
+          </div>
+
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="card_type"
+              value="002"
+              inputId="card_type2"
+              [(ngModel)]="paymentData.card_type"
+              (onClick)="onDataChanged()"
+            >
+            </p-radioButton>
+            <label for="ingredient2" class="ml-2"> MASTER</label>
+          </div>
+          <!-- <div *ngIf="validationErrors['card_type']" class="p-error">
+            {{ validationErrors["card_type"] }}
+          </div> -->
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col-12">
+          <label class="block text-900 font-medium mb-2 mt-3 w-full text-white"
+            >Card Number</label
+          >
+          <input
+            type="number"
+            placeholder="0000 0000 0000 0000"
+            pInputText
+            [(ngModel)]="paymentData.card_number"
+            name="card_number"
+            class="p-inputtext-sm w-full mb-1"
+            (input)="onDataChanged()"
+          />
+          <div *ngIf="validationErrors['card_number']" class="p-error">
+            {{ validationErrors["card_number"] }}
+          </div>
+        </div>
+      </div>
+
+      <div class="grid flex flex-row align-items-end">
+        <div class="col-12 md:col-6">
+          <label class="block text-900 font-medium mb-2 w-full text-white">
+            Expire Date</label
+          >
+          <input
+            type="text"
+            pInputText
+            class="p-inputtext-sm w-full"
+            name="card_expiry_date"
+            placeholder="YY/MM"
+            [(ngModel)]="paymentData.card_expiry_date"
+            name="card_expiry_date"
+          />
+          <!-- (input)="onDataChanged()" -->
+
+          <div *ngIf="validationErrors['card_expiry_date']" class="p-error">
+            {{ validationErrors["card_expiry_date"] }}
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <label class="block text-900 mb-2 font-medium text-white"></label>
+          <button
+            pButton
+            class="place-order-btn p-button-sm"
+            label="Proceed Payment"
+            [disabled]="!isFormValid"
+          ></button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

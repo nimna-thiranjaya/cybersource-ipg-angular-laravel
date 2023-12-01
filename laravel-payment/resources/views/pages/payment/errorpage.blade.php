@@ -48,7 +48,7 @@
                         </div>
                         @endif
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <div style="font-weight: 600; color: red">
+                            <div style="font-weight: 600; color: red; font-size : 30px; text-align : center">
                                 Data Changed by some one or invalid signature
                             </div>
 

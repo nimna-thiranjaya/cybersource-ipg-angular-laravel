@@ -7,10 +7,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
+
+    public function handlePaymentResponse(Request $request){
+        // dd($request->all());
+        //return json as response
+        $decryptedData = json_encode($request->all());
+
+
+        return view('pages.payment.payment', compact('decryptedData'));
+
+    }
 
    public function aes_evpKDF($password, $salt, $keySize = 8, $ivSize = 4, $iterations = 1, $hashAlgorithm = "md5")
 {

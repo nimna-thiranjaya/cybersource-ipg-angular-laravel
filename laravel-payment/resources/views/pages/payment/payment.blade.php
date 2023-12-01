@@ -20,63 +20,19 @@
 <body>
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
-                <div class="row w-100 mx-0">
-                    <div class="col-lg-4 mx-auto">
-                        @if(Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" id="alert-message">
-                            {{ Session::get('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            @php
-                            Session::forget('success');
-                            @endphp
+            <div class="content-wrapper ">
+                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                    <h3>Payment Response (this is custom report)</h3>
 
-                        </div>
-                        @endif
-
-                        @if(Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" id="alert-message">
-                            {{ Session::get('error') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            @php
-                            Session::forget('error');
-                            @endphp
-                        </div>
-                        @endif
-
-                        <div>
-                            <!-- Display data in compact -->
-                            <p>{{ $decryptedData }}</p>
-                        </div>
-                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <h3>Payment Interface</h3>
-                            <form class="pt-3" action="{{ URL::to('/user-login') }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Card Type (VIZA / MASTER)" name="card_type"
-                                        value="{{old('card_type')}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Card Number" name="card_num" value="{{old('card_num')}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputPassword1"
-                                        placeholder="Exp Date" name="exp_date" value="{{old('exp_date')}}">
-                                </div>
-                                <div class="mt-3">
-                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        type="submit">Pay</button>
-                                </div>
-                            </form>
-                        </div>
+                    <div>
+                        <!-- Display data in compact -->
+                        <p>{{ $decryptedData }}</p>
                     </div>
+
+                    <button type="button" class="btn btn-primary"
+                        onclick="window.location.href='http://localhost:4200/#/'">Go to
+                        Caravan Web</button>
+
                 </div>
             </div>
             <!-- content-wrapper ends -->
@@ -115,6 +71,7 @@
     });
     </script>
 </body>
+
 
 
 

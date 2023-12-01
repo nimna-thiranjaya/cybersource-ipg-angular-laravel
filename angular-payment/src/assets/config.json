@@ -1,0 +1,19 @@
+{
+  "baseURL": "http://localhost:8080/api",
+  "recaptcha": {
+    "siteKey": "6LeQIh4nAAAAAAagTIS36i_jdScRIkrOCf3KBWjO"
+  },
+  "googleAuth": {
+    "clientId": "239434711388-ujkpk4hl7ttvq7u5qhr02gjkpiidi1mj.apps.googleusercontent.com"
+  },
+
+  "facebookAuth": {
+    "clientId": "227155076901612"
+  },
+
+  "cyberSource": {
+    "SECRET_KEY": "0307759849da45ed888edf363363aa9685bdc02de713424cac3826e3bf8a2089a716c1fb24b64cacb24e2f0e344c7b47e5f03677f41c478a8fd2e4faf98a2c7a2a409d17d9264d6183f6ef13459c3fc0874c2181573448f99b9367fd280a17c65f4aa032027945eea33eee6135b55ec2e061f3030a5b4803bc58c3158e49dc9e",
+    "ACCESS_KEY": "a7c8045347d33447a4367559f46177c6",
+    "PROFILE_ID": "CCBEA78D-8382-4ADC-89E3-7E0FBCD30C03"
+  }
+}

@@ -31,4 +31,9 @@ Route::get('/dashboard/viewnotes/{id}', [WebController::class, 'viewnotes']) -> 
 Route::get('/drafts', [WebController::class, 'drafts']) -> name('drafts');
 Route::get('/trash', [WebController::class, 'trash']) -> name('trash');
 // Route::get('/editnote', [WebController::class, 'editnote']) -> name('editnote');
+Route::post('/api/payments/response', [WebController::class, 'handlePaymentResponse'])->name('handlePaymentResponse');
 Route::get('/update-note/{id}', [WebController::class, 'updateNote']) -> name('updateNote');
+
+Route::get('/token', function () {
+    return csrf_token();
+});
