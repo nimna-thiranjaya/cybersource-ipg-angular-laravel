@@ -13,22 +13,24 @@ export class PaymentStartComponent {
     description: 'Payment for something',
     name: 'John Doe',
     reference: '1234567890',
-    signature: 'From Nimna',
   };
 
   constructor(private encryptionService: EncriptionService) {}
+
+  ngOnInit(): void {
+    let signature = this.encryptionService.generateSignature(this.data);
+
+    this.data.signature = signature;
+  }
+
   onMakePayment() {
+    //genarate hash for data
+
     let encryptedData = this.encryptionService.encryptData(this.data);
-    console.log('encryptedData', encryptedData);
 
     let ecodedData = encodeURIComponent(encryptedData);
 
     let url = 'http://127.0.0.1:8000/payment?data=' + ecodedData;
-
-    console.log(
-      'HIIIIIIIIIII',
-      this.encryptionService.decryptData(encryptedData)
-    );
 
     window.open(url, '_self');
   }

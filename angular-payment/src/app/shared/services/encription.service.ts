@@ -5,6 +5,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class EncriptionService {
   publicKey = 'lbwyBzfgzUIvXZFShJuikaWvLJhIVq36';
+  secretForHashing = 'bwebuwbeudbwedybewudew';
   constructor() {}
 
   public encryptData(data: any) {
@@ -28,5 +29,14 @@ export class EncriptionService {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  generateSignature(data: any): string {
+    const jsonString = JSON.stringify(data);
+    const signature = CryptoJS.HmacSHA256(
+      jsonString,
+      this.secretForHashing
+    ).toString(CryptoJS.enc.Hex);
+    return signature;
   }
 }

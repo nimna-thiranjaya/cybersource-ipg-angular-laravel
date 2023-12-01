@@ -21,6 +21,7 @@ use App\Http\Controllers\WebController;
 Route::get('/', [WebController::class, 'login']) -> name('login');
 Route::get('/payment/', [WebController::class, 'payment']) -> name('Payment');
 // Route::post('/payment', [WebController::class, 'payment']) -> name('Payment');
+Route::get('/error', [WebController::class,'errorPage']) -> name('errorPage');
 
 Route::get('/register', [WebController::class, 'register']) -> name('register');
 Route::get('/dashboard', [WebController::class, 'dashboard']) -> name('dashboard');

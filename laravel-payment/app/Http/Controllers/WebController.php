@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 
 class WebController extends Controller
@@ -66,17 +68,40 @@ public function cryptoJs_aes_decrypt($data, $key)
     public function payment()
     {
         $publicKey = 'lbwyBzfgzUIvXZFShJuikaWvLJhIVq36';
+        $secretForHashing = 'bwebuwbeudbwedybewudew';
+
         $encryptedData= $_GET['data'];
+
 
         $decryptedData = $this->cryptoJs_aes_decrypt($encryptedData, $publicKey);
 
-        // $decryptedData = json_decode($decryptedData);
-        // $jsonDecryptedData = json_encode($decryptedData);
+        //remove signature form json
+
+        $newData = json_decode($decryptedData);
+
+        try{
+            $signature = $newData->signature;
+          }catch(Exception $e){
+            return view('pages.payment.errorpage');
+        }
+
+        unset($newData->signature);
+
+        $stringData = json_encode($newData);
 
 
+        $serverSignature = hash_hmac('sha256', $stringData, $secretForHashing);
 
-        return view('pages.payment.payment', compact('decryptedData'));
+        if($signature == $serverSignature) {
+            return view('pages.payment.payment', compact('decryptedData'));
+        }else {
+            return view('pages.payment.errorpage');
+        }
+
+
     }
+
+
     public function login()
     {
         if (session()->has('LoggedUser') && session()->has('LoggedUserName')) {
